@@ -1,6 +1,6 @@
 services:
   web:
-    build: .
+    image: registry.saeidnia.com/math-questions-api:latest
     ports:
       - 5000:5000
     networks:
