@@ -27,7 +27,7 @@ jobs:
       
       - name: Get short commit hash
         id: git_short_hash
-        run: echo "::set-output name=hash::$(git rev-parse --short HEAD)"
+        run: echo "$(git rev-parse --short HEAD) >> $GITHUB_OUTPUT"
 
       - name: Create tag
         id: create_tag
