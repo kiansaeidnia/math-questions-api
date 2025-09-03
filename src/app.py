@@ -5,7 +5,13 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    categories = ["algebra/basic", "algebra/combine_like_terms", "algebra/complex_quadratic", "algebra/factoring"]
+    categories = [
+            "algebra/basic",
+            "algebra/combine_like_terms",
+            "algebra/complex_quadratic",
+            "algebra/factoring",
+            "algebra/system_of_equations",
+        ]
     response = ""
     for category in categories:
         line = f"<a href=\"/{category}/1\">{category}</a><br />"
@@ -117,6 +123,33 @@ def expanding(difficulty):
 
     return data
 
+@app.route("/algebra/system_of_equations/<int:difficulty>")
+def system_of_equations(difficulty):
+    diff = 5
+    if difficulty == 1:
+        diff = 5
+    elif difficulty == 2:
+        diff = 20
+    else:
+        diff = 30
+
+    def generate():
+        return mg.algebra.system_of_equations(diff, diff, diff)
+    
+    problem, solution = generate()
+    
+    while True:
+        if "/" in solution:
+            problem, solution = generate()
+        else:
+            break
+
+    data = {
+        "problem": problem.replace("$", ""),
+        "solution": solution.replace("$", "")
+    }
+
+    return data
 
 
 if __name__ == "__main__":
