@@ -1,16 +1,8 @@
 services:
-  math-questions-api:
-    image: registry.saeidnia.com/math-questions-api:latest
-    ports:
-      - 5000:5000
+  api:
+    image: registry.saeidnia.com/math-question-api:latest
     networks:
           - pangolin
-  watchtower:
-    image: containrrr/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /root/.docker/config.json:/config.json
-    command: --interval 30
 
 networks:
   pangolin:
