@@ -12,7 +12,7 @@ def main():
         response += line
     return response
 
-# Uses https://lukew3.github.io/mathgenerator/mathgenerator/algebra.html#basic_algebra
+# https://lukew3.github.io/mathgenerator/mathgenerator/algebra.html#basic_algebra
 @app.route("/algebra/basic/<int:difficulty>")
 def basic_algebra(difficulty):
     diff = 5
@@ -37,7 +37,7 @@ def basic_algebra(difficulty):
     }
     return data
 
-# Uses https://lukew3.github.io/mathgenerator/mathgenerator/algebra.html#combine_like_terms
+# https://lukew3.github.io/mathgenerator/mathgenerator/algebra.html#combine_like_terms
 @app.route('/algebra/combine_like_terms/<int:difficulty>')
 def combine_like_terms(difficulty):
     diff = 5
