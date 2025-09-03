@@ -12,6 +12,7 @@ def main():
         response += line
     return response
 
+# https://lukew3.github.io/mathgenerator/mathgenerator/algebra.html#basic_algebra
 @app.route("/algebra/basic/<int:difficulty>")
 def basic_algebra(difficulty):
     diff = 5
@@ -35,6 +36,33 @@ def basic_algebra(difficulty):
         "solution": solution[1:-1]
     }
     return data
+
+# https://lukew3.github.io/mathgenerator/mathgenerator/algebra.html#combine_like_terms
+@app.route('/algebra/combine_like_terms/<int:difficulty>')
+def combine_like_terms(difficulty):
+    diff = 5
+    if difficulty == 1:
+        diff = 5
+    elif difficulty == 2:
+        diff = 20
+    else:
+        diff = 50
+
+    problem, solution = mg.algebra.combine_like_terms(diff, diff*2, diff/2 if diff > 5 else diff )
+    while True:
+        if "/" in solution:
+            problem, solution = mg.algebra.combine_like_terms(diff, diff*2, diff/2 if diff > 5 else diff )
+        elif "0" in solution:
+            problem, solution = mg.algebra.combine_like_terms(diff, diff*2, diff/2 if diff > 5 else diff )
+        else:
+            break
+
+    data = {
+        "problem": problem[1:-1],
+        "solution": solution[1:-1]
+    }
+    return data
+
 
 if __name__ == "__main__":
     app.run(debug=True)
