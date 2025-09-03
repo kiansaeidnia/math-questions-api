@@ -14,4 +14,4 @@ Run `pip install -r requirements.txt`
 
 Run `flask --app app run`
 
-Open https://127.0.0.1:5000/
+Open http://127.0.0.1:5000/
