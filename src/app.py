@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    categories = ["algebra/basic", "algebra/combine_like_terms"]
+    categories = ["algebra/basic", "algebra/combine_like_terms", "algebra/complex_quadratic"]
     response = ""
     for category in categories:
         line = f"<a href=\"/{category}/1\">{category}</a><br />"
@@ -32,8 +32,8 @@ def basic_algebra(difficulty):
             break
 
     data = {
-        "problem": problem[1:-1],
-        "solution": solution[1:-1]
+        "problem": problem.replace("$", ""),
+        "solution": solution.replace("$", "")
     }
     return data
 
@@ -63,8 +63,8 @@ def combine_like_terms(difficulty):
             break
 
     data = {
-        "problem": problem[1:-1],
-        "solution": solution[1:-1]
+        "problem": problem.replace("$", ""),
+        "solution": solution.replace("$", "")
     }
     return data
 
@@ -84,14 +84,14 @@ def complex_quadratic(difficulty):
     problem, solution = generate()
 
     while True:
-        if "/" in solution:
+        if "\\sqrt" in solution:
             problem, solution = generate()
         else:
             break
         
     data = {
-        "problem": problem[1:-1],
-        "solution": solution[1:-1]
+        "problem": problem.replace("$", ""),
+        "solution": solution.replace("$", "")
     }
     return data
 
