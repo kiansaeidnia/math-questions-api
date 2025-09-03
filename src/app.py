@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    categories = ["algebra/basic", "algebra/combine_like_terms", "algebra/complex_quadratic"]
+    categories = ["algebra/basic", "algebra/combine_like_terms", "algebra/complex_quadratic", "algebra/factoring"]
     response = ""
     for category in categories:
         line = f"<a href=\"/{category}/1\">{category}</a><br />"
@@ -93,6 +93,28 @@ def complex_quadratic(difficulty):
         "problem": problem.replace("$", ""),
         "solution": solution.replace("$", "")
     }
+    return data
+
+@app.route("/algebra/factoring/<int:difficulty>")
+def expanding(difficulty):
+    diff = 5
+    if difficulty == 1:
+        diff = 5
+    elif difficulty == 2:
+        diff = 20
+    else:
+        diff = 30
+
+    def generate():
+        return mg.algebra.factoring(diff, diff)
+    
+    problem, solution = generate()
+
+    data = {
+        "problem": problem.replace("$", ""),
+        "solution": solution.replace("$", "")
+    }
+
     return data
 
 
