@@ -68,6 +68,34 @@ def combine_like_terms(difficulty):
     }
     return data
 
+@app.route('/algebra/complex_quadratic/<int:difficulty>')
+def complex_quadratic(difficulty):
+    diff = 5
+    if difficulty == 1:
+        diff = 5
+    elif difficulty == 2:
+        diff = 20
+    else:
+        diff = 30
+    
+    def generate():
+        return mg.algebra.complex_quadratic(0, diff)
+    
+    problem, solution = generate()
+
+    while True:
+        if "/" in solution:
+            problem, solution = generate()
+        else:
+            break
+        
+    data = {
+        "problem": problem[1:-1],
+        "solution": solution[1:-1]
+    }
+    return data
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
