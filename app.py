@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    categories = ["algebra/basic"]
+    categories = ["algebra/basic", "algebra/combine_like_terms"]
     response = ""
     for category in categories:
         line = f"<a href=\"/{category}/1\">{category}</a><br />"
@@ -46,14 +46,19 @@ def combine_like_terms(difficulty):
     elif difficulty == 2:
         diff = 20
     else:
-        diff = 50
+        diff = 30
 
-    problem, solution = mg.algebra.combine_like_terms(diff, diff*2, diff/2 if diff > 5 else diff )
+    def generate():
+        return mg.algebra.combine_like_terms(diff, round(diff*2), round(diff/3) if diff > 5 else round(diff/2) )
+
+    problem, solution = generate()
     while True:
         if "/" in solution:
-            problem, solution = mg.algebra.combine_like_terms(diff, diff*2, diff/2 if diff > 5 else diff )
+            problem, solution = generate()
         elif "0" in solution:
-            problem, solution = mg.algebra.combine_like_terms(diff, diff*2, diff/2 if diff > 5 else diff )
+            problem, solution = generate()
+        elif "+" not in solution:
+            problem, solution = generate()
         else:
             break
 
