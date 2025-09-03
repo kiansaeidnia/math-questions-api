@@ -1,16 +1,22 @@
-# Development
+# Math Question API
 
-## Create python virtual environment
+## Info
+
+Based on [mathgenerator](https://lukew3.github.io/mathgenerator/mathgenerator.html)
+
+## Development
+
+### Create python virtual environment
 
 Run `python -m venv .`
 
 Then `Scripts/activate.ps1`
 
-## Install dependencies
+### Install dependencies
 
 Run `pip install -r requirements.txt`
 
-## Run Code
+### Run Code
 
 Run `flask --app app run`
 
