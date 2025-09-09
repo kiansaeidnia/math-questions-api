@@ -11,6 +11,10 @@ def main():
             "algebra/complex_quadratic",
             "algebra/factoring",
             "algebra/system_of_equations",
+            "calculus/power_rule_differentiation",
+            "calculus/power_rule_integration",
+            "statistics/combinations",
+            "statistics/permutations"
         ]
     response = ""
     for category in categories:
@@ -151,6 +155,93 @@ def system_of_equations(difficulty):
 
     return data
 
+# https://lukew3.github.io/mathgenerator/mathgenerator/calculus.html#power_rule_differentiation
+@app.route("/calculus/power_rule_differentiation/<int:difficulty>")
+def power_rule_differentiation(difficulty):
+    def get_difficulty_params(level):
+        if level == 1:
+            return dict(max_coef=5, max_exp=3, max_terms=1)
+        elif level == 2:
+            return dict(max_coef=10, max_exp=5, max_terms=2)
+        else:
+            return dict(max_coef=15, max_exp=7, max_terms=3)
+
+    params = get_difficulty_params(difficulty)
+
+    MAX_RETRIES = 10
+    for _ in range(MAX_RETRIES):
+        problem, solution = mg.calculus.power_rule_differentiation(**params)
+        if "/" not in solution and "0" not in solution:
+            break
+
+    data = {
+        "problem": problem.replace("$", ""),
+        "solution": solution.replace("$", "")
+    }
+    return data
+
+# https://lukew3.github.io/mathgenerator/mathgenerator/calculus.html#power_rule_integration
+@app.route("/calculus/power_rule_integration/<int:difficulty>")
+def power_rule_integration(difficulty):
+    def get_difficulty_params(level):
+        if level == 1:
+            return dict(max_coef=5, max_exp=3, max_terms=1)
+        elif level == 2:
+            return dict(max_coef=10, max_exp=5, max_terms=2)
+        else:
+            return dict(max_coef=15, max_exp=7, max_terms=3)
+
+    params = get_difficulty_params(difficulty)
+
+    MAX_RETRIES = 10
+    for _ in range(MAX_RETRIES):
+        problem, solution = mg.calculus.power_rule_integration(**params)
+        if "/" not in solution and "0" not in solution:
+            break
+
+    data = {
+        "problem": problem.replace("$", ""),
+        "solution": solution.replace("$", "")
+    }
+    return data
+
+# https://lukew3.github.io/mathgenerator/mathgenerator/statistics.html#combinations
+@app.route("/statistics/combinations/<int:difficulty>")
+def combinations_route(difficulty):
+    # Map difficulty to max_lengthgth parameter
+    if difficulty == 1:
+        max_lengthgth = 5
+    elif difficulty == 2:
+        max_lengthgth = 7
+    else:
+        max_lengthgth = 10
+
+    problem, solution = mg.statistics.combinations(max_lengthgth)
+
+    data = {
+        "problem": problem.replace("$", ""),
+        "solution": solution.replace("$", "")
+    }
+    return data
+
+# https://lukew3.github.io/mathgenerator/mathgenerator/statistics.html#permutations
+@app.route("/statistics/permutations/<int:difficulty>")
+def permutations_route(difficulty):
+    # Map difficulty to max_lengthgth parameter
+    if difficulty == 1:
+        max_lengthgth = 3
+    elif difficulty == 2:
+        max_lengthgth = 5
+    else:
+        max_lengthgth = 7
+
+    problem, solution = mg.statistics.permutations(max_lengthgth)
+
+    data = {
+        "problem": problem.replace("$", ""),
+        "solution": solution.replace("$", "")
+    }
+    return data
 
 if __name__ == "__main__":
     app.run(debug=True)
