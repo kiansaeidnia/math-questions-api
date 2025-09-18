@@ -14,7 +14,7 @@ Then `Scripts/activate.ps1`
 
 ### Install dependencies
 
-Run `pip install -r requirements.txt`
+Run `pip install -r src/requirements.txt`
 
 ### Run Code
 

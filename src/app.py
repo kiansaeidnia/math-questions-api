@@ -42,8 +42,8 @@ def basic_algebra(difficulty):
             break
 
     data = {
-        "problem": problem.replace("$", ""),
-        "solution": solution.replace("$", "")
+        "problem": problem,
+        "solution": solution
     }
     return data
 
@@ -73,8 +73,8 @@ def combine_like_terms(difficulty):
             break
 
     data = {
-        "problem": problem.replace("$", ""),
-        "solution": solution.replace("$", "")
+        "problem": problem,
+        "solution": solution
     }
     return data
 
@@ -100,8 +100,8 @@ def complex_quadratic(difficulty):
             break
         
     data = {
-        "problem": problem.replace("$", ""),
-        "solution": solution.replace("$", "")
+        "problem": problem,
+        "solution": solution
     }
     return data
 
@@ -121,8 +121,8 @@ def expanding(difficulty):
     problem, solution = generate()
 
     data = {
-        "problem": problem.replace("$", ""),
-        "solution": solution.replace("$", "")
+        "problem": problem,
+        "solution": solution
     }
 
     return data
@@ -149,8 +149,8 @@ def system_of_equations(difficulty):
             break
 
     data = {
-        "problem": problem.replace("$", ""),
-        "solution": solution.replace("$", "")
+        "problem": problem,
+        "solution": solution
     }
 
     return data
@@ -181,8 +181,8 @@ def power_rule_differentiation(difficulty):
             break
 
     data = {
-        "problem": problem.replace("$", ""),
-        "solution": solution.replace("$", "")
+        "problem": problem,
+        "solution": solution
     }
     return data
 
@@ -212,8 +212,8 @@ def power_rule_integration(difficulty):
             break
 
     data = {
-        "problem": problem.replace("$", ""),
-        "solution": solution.replace("$", "")
+        "problem": problem,
+        "solution": solution
     }
     return data
 
@@ -231,8 +231,8 @@ def combinations_route(difficulty):
     problem, solution = mg.statistics.combinations(10 + max_length)
 
     data = {
-        "problem": problem.replace("$", ""),
-        "solution": solution.replace("$", "")
+        "problem": problem,
+        "solution": solution
     }
     return data
 
@@ -250,8 +250,8 @@ def permutations_route(difficulty):
     problem, solution = mg.statistics.permutation(10 + max_length)
 
     data = {
-        "problem": problem.replace("$", ""),
-        "solution": solution.replace("$", "")
+        "problem": problem,
+        "solution": solution
     }
     return data
 
