@@ -14,8 +14,8 @@ def basic_algebra(difficulty):
   solution = random.randint(1, round(difficulty / 3))
   
   # 2. Pick random integers for the other parts of the equation
-  a = random.randint(2, difficulty) # Coefficient for x
-  b = random.randint(1, difficulty * 2) # Constant to add
+  a = random.randint(2, round(difficulty / 2)) # Coefficient for x
+  b = random.randint(1, difficulty) # Constant to add
   
   # 3. Calculate the result 'c' based on the chosen solution
   c = a * solution + b
