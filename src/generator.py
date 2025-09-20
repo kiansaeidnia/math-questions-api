@@ -61,7 +61,7 @@ def factoring_problem(difficulty):
     else: # c is negative
         c_str = f" - {abs(c)}"
 
-    problem = f"x^{{2}}{b_str}{c_str} = 0"
+    problem = f"x^{{2}}{b_str}{c_str}"
 
     # 4. Format the solution string and the list of roots.
     def format_factor(r):
