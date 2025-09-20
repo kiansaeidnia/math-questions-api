@@ -61,14 +61,14 @@ def factoring_problem(difficulty):
     else: # c is negative
         c_str = f" - {abs(c)}"
 
-    problem = f"x^{{2}}{b_str}{c_str}"
+    problem = f"x^{{2}}{b_str}{c_str} = 0"
 
     # 4. Format the solution string and the list of roots.
     def format_factor(r):
         num = -r
         return f"(x + {num})" if num > 0 else f"(x - {abs(num)})"
 
-    factored_form = f"{format_factor(root1)}{format_factor(root2)} = 0"
+    factored_form = f"{format_factor(root1)}{format_factor(root2)}"
     
     # solution = {
     #     "factored_form": factored_form,
