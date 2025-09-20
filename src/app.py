@@ -1,5 +1,6 @@
 from flask import Flask
-import mathgenerator as mg
+# import mathgenerator as mg
+import generator as gen
 
 app = Flask(__name__)
 
@@ -27,19 +28,20 @@ def main():
 def basic_algebra(difficulty):
     diff = 5
     if difficulty == 1:
-        diff = 5
+        diff = 10
     elif difficulty == 2:
         diff = 20
     else:
         diff = 50
-    problem, solution = mg.algebra.basic_algebra(diff)
-    while True:
-        if "/" in solution:
-            problem, solution = mg.algebra.basic_algebra(diff)
-        elif "0" in solution:
-            problem, solution = mg.algebra.basic_algebra(diff)
-        else:
-            break
+        
+    problem, solution = gen.basic_algebra(diff)
+    # while True:
+    #     if "/" in solution:
+    #         problem, solution = gen.basic_algebra(diff)
+    #     elif "0" in solution:
+    #         problem, solution = gen.basic_algebra(diff)
+    #     else:
+    #         break
 
     data = {
         "problem": problem.replace("$", ""),
@@ -78,32 +80,32 @@ def combine_like_terms(difficulty):
     }
     return data
 
-@app.route('/algebra/complex_quadratic/<int:difficulty>')
-def complex_quadratic(difficulty):
-    diff = 5
-    if difficulty == 1:
-        diff = 5
-    elif difficulty == 2:
-        diff = 20
-    else:
-        diff = 30
+# @app.route('/algebra/complex_quadratic/<int:difficulty>')
+# def complex_quadratic(difficulty):
+#     diff = 5
+#     if difficulty == 1:
+#         diff = 5
+#     elif difficulty == 2:
+#         diff = 20
+#     else:
+#         diff = 30
     
-    def generate():
-        return mg.algebra.complex_quadratic(0, diff)
+#     def generate():
+#         return mg.algebra.complex_quadratic(0, diff)
     
-    problem, solution = generate()
+#     problem, solution = generate()
 
-    while True:
-        if "\\sqrt" in solution:
-            problem, solution = generate()
-        else:
-            break
+#     while True:
+#         if "\\sqrt" in solution:
+#             problem, solution = generate()
+#         else:
+#             break
         
-    data = {
-        "problem": problem.replace("$", ""),
-        "solution": solution.replace("$", "")
-    }
-    return data
+#     data = {
+#         "problem": problem.replace("$", ""),
+#         "solution": solution.replace("$", "")
+#     }
+#     return data
 
 @app.route("/algebra/factoring/<int:difficulty>")
 def expanding(difficulty):
@@ -116,13 +118,13 @@ def expanding(difficulty):
         diff = 30
 
     def generate():
-        return mg.algebra.factoring(diff, diff)
+        return gen.factoring_problem(diff)
     
     problem, solution = generate()
 
     data = {
-        "problem": problem.replace("$", ""),
-        "solution": solution.replace("$", "")
+        "problem": problem,
+        "solution": solution
     }
 
     return data
@@ -158,25 +160,9 @@ def system_of_equations(difficulty):
 # https://lukew3.github.io/mathgenerator/mathgenerator/calculus.html#power_rule_differentiation
 @app.route("/calculus/power_rule_differentiation/<int:difficulty>")
 def power_rule_differentiation(difficulty):
-    max_coef = 5
-    max_exp = 3
-    max_terms = 1
-    if difficulty == 1:
-        max_coef = 5
-        max_exp = 3
-        max_terms = 1
-    elif difficulty == 2:
-        max_coef = 10
-        max_exp = 5
-        max_terms = 2
-    else:
-        max_coef = 15
-        max_exp = 7
-        max_terms = 3
-
     MAX_RETRIES = 10
     for _ in range(MAX_RETRIES):
-        problem, solution = mg.calculus.power_rule_differentiation(max_coef, max_exp, max_terms)
+        problem, solution = gen.power_rule_differentiation(difficulty)
         if "/" not in solution and "0" not in solution:
             break
 
