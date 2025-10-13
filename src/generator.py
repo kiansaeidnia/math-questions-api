@@ -112,7 +112,7 @@ def power_rule_differentiation(difficulty):
 
         problem += f'{coefficient}x^{{{exponent}}}'
 
-        solution += f'{coefficient * exponent}x^{{{exponent - 1}}}'
+        solution += f'{coefficient * exponent}x{"^" + str(exponent - 1) if exponent > 2 else ""}'
 
 
     return (problem, solution)
